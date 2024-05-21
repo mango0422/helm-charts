@@ -12,6 +12,8 @@ service:
   type: ClusterIP
   port: 80
 
+serviceAccountName: arcadia-fe-sa
+
 ingress:
   enabled: true
   annotations:
