@@ -12,7 +12,8 @@ service:
   type: ClusterIP
   port: 80
 
-serviceAccountName: arcadia-fe-sa
+serviceAccount:
+  enabled: false
 
 ingress:
   enabled: true
