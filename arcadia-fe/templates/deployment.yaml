@@ -1,15 +1,15 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "arcadia.fullname" . }}
-  labels: {{- include "arcadia.labels" . | nindent 4 }}
+  name: {{ include "arcadia-fe.fullname" . }}
+  labels: {{- include "arcadia-fe.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
-    matchLabels: {{- include "arcadia.selectorLabels" . | nindent 6 }}
+    matchLabels: {{- include "arcadia-fe.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      labels: {{- include "arcadia.selectorLabels" . | nindent 8 }}
+      labels: {{- include "arcadia-fe.selectorLabels" . | nindent 8 }}
     spec:
       imagePullSecrets:
       {{- range .Values.imagePullSecrets }}
