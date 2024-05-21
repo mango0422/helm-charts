@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: { { include "arcadia.fullname" . } }
-  labels: { { - include "arcadia.labels" . | nindent 4 } }
+  name: {{ include "arcadia.fullname" . }}
+  labels: {{- include "arcadia.labels" . | nindent 4 }}
 spec:
-  replicas: { { .Values.replicaCount } }
+  replicas: {{ .Values.replicaCount }}
   selector:
-    matchLabels: { { - include "arcadia.selectorLabels" . | nindent 6 } }
+    matchLabels: {{- include "arcadia.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      labels: { { - include "arcadia.selectorLabels" . | nindent 8 } }
+      labels: {{- include "arcadia.selectorLabels" . | nindent 8 }}
     spec:
       imagePullSecrets:
-        { { - range .Values.imagePullSecrets } }
+      {{- range .Values.imagePullSecrets }}
         - name: {{ .name }}
-        { { - end } }
+      {{- end }}
       containers:
-        - name: { { .Chart.Name } }
+        - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          imagePullPolicy: { { .Values.image.pullPolicy } }
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: 3000
               name: http
-          resources: { { - toYaml .Values.resources | nindent 12 } }
+          resources: {{- toYaml .Values.resources | nindent 12 }}
