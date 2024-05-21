@@ -12,9 +12,9 @@ spec:
       labels: { { - include "arcadia.selectorLabels" . | nindent 8 } }
     spec:
       imagePullSecrets:
-        { { -range .Values.imagePullSecrets } }
+        { { - range .Values.imagePullSecrets } }
         - name: {{ .name }}
-        {{- end }}
+        { { - end } }
       containers:
         - name: { { .Chart.Name } }
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
