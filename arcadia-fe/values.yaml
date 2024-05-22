@@ -21,7 +21,9 @@ ingress:
     cert-manager.io/issuer: "letsencrypt-prod"  # cert-manager의 Issuer 이름을 적절하게 설정
   hosts:
     - host: arcadia.p-e.kr
-      paths: /
+      paths:
+        - path: /
+          pathType: Prefix
 
   tls:
     - secretName: arcadia-tls
