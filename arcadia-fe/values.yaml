@@ -1,6 +1,6 @@
 replicaCount: 2
 
-image: gcu-profit-dev.kr-central-2.kcr.dev/arcadia-nextjs/arcadia-fe:16
+image:
   repository: gcu-profit-dev.kr-central-2.kcr.dev/arcadia-nextjs/arcadia-fe
   tag: latest
   pullPolicy: IfNotPresent
